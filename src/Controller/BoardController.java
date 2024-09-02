@@ -122,59 +122,60 @@ public class BoardController {
     }
 
     // Logic for the first phase, where both players choose and fill their starting countries
+    // changing to 4 players and the order of putting the soldiers into the country
     public void placeSoldiers(Country country, CountryView view) {
-        if (turn.equals(this.playerOne.getName() + "'s Turn") && (country.getSoldiersInside() == 0 || allCountriesFilled())) {
-            country.setOwner(this.playerOne);
-            this.playerOne.removeSoldiers(1);
-            country.addSoldiersInside(1);
-            view.setSoldierLabel("Soldiers: " + country.getSoldiersInside());
-            view.setBackgroundColor(this.playerOne.getPlayerColor());
-            view.setSoldierIcons(country.getSoldiersInside());
-            turn = turn.equals(this.playerOne.getName() + "'s Turn") ? this.playerTwo.getName() + "'s Turn" : this.playerOne.getName() + "'s Turn";
-            this.currentPlayer = this.currentPlayer == this.playerOne ? this.playerTwo : this.playerOne;
-            boardView.setPlayerTurnLabel(turn);
+            if (turn.equals(this.playerOne.getName() + "'s Turn")  && (country.getSoldiersInside() == 0 || allCountriesFilled())) {
+                country.setOwner(this.playerOne);
+                this.playerOne.removeSoldiers(1);
+                country.addSoldiersInside(1);
+                view.setSoldierLabel("Soldiers: " + country.getSoldiersInside());
+                view.setBackgroundColor(this.playerOne.getPlayerColor());
+                view.setSoldierIcons(country.getSoldiersInside());
+                turn = turn.equals(this.playerOne.getName() + "'s Turn") ? this.playerTwo.getName() + "'s Turn" : this.playerOne.getName() + "'s Turn";
+                this.currentPlayer = this.currentPlayer == this.playerOne ? this.playerTwo : this.playerOne;
+                boardView.setPlayerTurnLabel(turn);
 
 
-        } else if (turn.equals(this.playerTwo.getName() + "'s Turn") && (country.getSoldiersInside() == 0 || allCountriesFilled())) {
-            country.setOwner(this.playerTwo);
-            this.playerTwo.removeSoldiers(1);
-            country.addSoldiersInside(1);
-            view.setSoldierLabel("Soldiers: " + country.getSoldiersInside());
-            view.setBackgroundColor(this.playerTwo.getPlayerColor());
-            view.setSoldierIcons(country.getSoldiersInside());
-            turn = turn.equals(this.playerOne.getName() + "'s Turn") ? this.playerTwo.getName() + "'s Turn" : this.playerOne.getName() + "'s Turn";
-            this.currentPlayer = this.currentPlayer == this.playerOne ? this.playerTwo : this.playerOne;
-            boardView.setPlayerTurnLabel(turn);
+            } else if (turn.equals(this.playerTwo.getName() + "'s Turn") && (country.getSoldiersInside() == 0 || allCountriesFilled())) {
+                country.setOwner(this.playerTwo);
+                this.playerTwo.removeSoldiers(1);
+                country.addSoldiersInside(1);
+                view.setSoldierLabel("Soldiers: " + country.getSoldiersInside());
+                view.setBackgroundColor(this.playerTwo.getPlayerColor());
+                view.setSoldierIcons(country.getSoldiersInside());
+                turn = turn.equals(this.playerTwo.getName() + "'s Turn") ? this.playerThree.getName() + "'s Turn" : this.playerTwo.getName() + "'s Turn";
+                this.currentPlayer = this.currentPlayer == this.playerTwo ? this.playerThree : this.playerTwo;
+                boardView.setPlayerTurnLabel(turn);
 
-        } else if (turn.equals(this.playerThree.getName() + "'s Turn") && (country.getSoldiersInside() == 0 || allCountriesFilled())) {
-            country.setOwner(this.playerThree);
-            this.playerThree.removeSoldiers(1);
-            country.addSoldiersInside(1);
-            view.setSoldierLabel("Soldiers: " + country.getSoldiersInside());
-            view.setBackgroundColor(this.playerThree.getPlayerColor());
-            view.setSoldierIcons(country.getSoldiersInside());
-            turn = turn.equals(this.playerTwo.getName() + "'s Turn") ? this.playerThree.getName() + "'s Turn" : this.playerTwo.getName() + "'s Turn";
-            this.currentPlayer = this.currentPlayer == this.playerTwo ? this.playerThree : this.playerTwo;
-            boardView.setPlayerTurnLabel(turn);
+            } else if (turn.equals(this.playerThree.getName() + "'s Turn") && (country.getSoldiersInside() == 0 || allCountriesFilled())) {
+                country.setOwner(this.playerThree);
+                this.playerThree.removeSoldiers(1);
+                country.addSoldiersInside(1);
+                view.setSoldierLabel("Soldiers: " + country.getSoldiersInside());
+                view.setBackgroundColor(this.playerThree.getPlayerColor());
+                view.setSoldierIcons(country.getSoldiersInside());
+                turn = turn.equals(this.playerThree.getName() + "'s Turn") ? this.playerFour.getName() + "'s Turn" : this.playerThree.getName() + "'s Turn";
+                this.currentPlayer = this.currentPlayer == this.playerThree ? this.playerFour : this.playerThree;
+                boardView.setPlayerTurnLabel(turn);
 
-        } else if (turn.equals(this.playerFour.getName() + "'s Turn") && (country.getSoldiersInside() == 0 || allCountriesFilled())) {
-            country.setOwner(this.playerFour);
-            this.playerFour.removeSoldiers(1);
-            country.addSoldiersInside(1);
-            view.setSoldierLabel("Soldiers: " + country.getSoldiersInside());
-            view.setBackgroundColor(this.playerFour.getPlayerColor());
-            view.setSoldierIcons(country.getSoldiersInside());
-            turn = turn.equals(this.playerThree.getName() + "'s Turn") ? this.playerFour.getName() + "'s Turn" : this.playerThree.getName() + "'s Turn";
-            this.currentPlayer = this.currentPlayer == this.playerThree ? this.playerFour : this.playerThree;
-            boardView.setPlayerTurnLabel(turn);
+            } else if (turn.equals(this.playerFour.getName() + "'s Turn") && (country.getSoldiersInside() == 0 || allCountriesFilled())) {
+                country.setOwner(this.playerFour);
+                this.playerFour.removeSoldiers(1);
+                country.addSoldiersInside(1);
+                view.setSoldierLabel("Soldiers: " + country.getSoldiersInside());
+                view.setBackgroundColor(this.playerFour.getPlayerColor());
+                view.setSoldierIcons(country.getSoldiersInside());
+                turn = turn.equals(this.playerFour.getName() + "'s Turn") ? this.playerOne.getName() + "'s Turn" : this.playerFour.getName() + "'s Turn";
+                this.currentPlayer = this.currentPlayer == this.playerFour ? this.playerOne : this.playerFour;
+                boardView.setPlayerTurnLabel(turn);
 
-            // Switches to next phase when the players have no more soldiers to place
-            if (this.playerFour.getSoldiers() == 0) {
-                setPhase("Attack Phase");
-                boardView.setCurrentPhaseLabel(getPhase());
-                boardView.endTurnButton.setEnabled(true);
+                // Switches to next phase when the players have no more soldiers to place
+                if (this.playerFour.getSoldiers() == 0) {
+                    setPhase("Attack Phase");
+                    boardView.setCurrentPhaseLabel(getPhase());
+                    boardView.endTurnButton.setEnabled(true);
+                }
             }
-        }
     }
 
     // Setting or Unsetting an attacking and defending country for the Attack Phase

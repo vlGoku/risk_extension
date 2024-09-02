@@ -50,10 +50,10 @@ public class StartWindowView implements ActionListener {
     public JFrame drawStartWindowFrame() {
         frame = new JFrame("Risk");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400,400);
+        frame.setSize(800,800);
         frame.setResizable(false);
 
-        startWindowLayout.rowHeights = new int[] { HEADLINE_HEIGHT, NAME_HEIGHT, BOARD_CHOICE_HEIGHT};
+        startWindowLayout.rowHeights = new int[] { HEADLINE_HEIGHT, NAME_HEIGHT, NAME_HEIGHT, BOARD_CHOICE_HEIGHT};
         startWindowLayout.columnWidths = new int[] { PLAYER_NAME_WIDTH, PLAYER_NAME_WIDTH};
 
         JLabel headline = new JLabel("Risk", JLabel.CENTER);
@@ -117,7 +117,7 @@ public class StartWindowView implements ActionListener {
         JPanel playerFourPanel = new JPanel(new GridLayout(4, 1));
         playerFourPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         JLabel playerFourHeadline = new JLabel("Player Four Name: ", JLabel.CENTER);
-        playerTwoName = new JTextField();
+        playerFourName = new JTextField();
         JLabel playerFourColorHeadline = new JLabel("Choose Player Two Color: ", JLabel.CENTER);
         JPanel playerFourColorButtonPanel = new JPanel(new GridLayout(1, 3));
         playerFourColorButtonPanel.setBorder(BorderFactory.createEmptyBorder(0,10,2,10));
@@ -154,7 +154,9 @@ public class StartWindowView implements ActionListener {
         startWindowPanel.add(headline, Helper.buildBoardConstraints(startWindowConstraints, 0, 0, 1, 2));
         startWindowPanel.add(playerOnePanel, Helper.buildBoardConstraints(startWindowConstraints, 1, 0, 1, 1));
         startWindowPanel.add(playerTwoPanel, Helper.buildBoardConstraints(startWindowConstraints, 1, 1, 1, 1));
-        startWindowPanel.add(boardChoicePanel, Helper.buildBoardConstraints(startWindowConstraints, 2, 0, 1, 2));
+        startWindowPanel.add(playerThreePanel, Helper.buildBoardConstraints(startWindowConstraints, 2, 0, 1, 1));
+        startWindowPanel.add(playerFourPanel, Helper.buildBoardConstraints(startWindowConstraints, 2, 1, 1, 1));
+        startWindowPanel.add(boardChoicePanel, Helper.buildBoardConstraints(startWindowConstraints, 3, 0, 1, 2));
 
         frame.setContentPane(startWindowPanel);
         frame.pack();
@@ -224,7 +226,7 @@ public class StartWindowView implements ActionListener {
             controller.setPlayerFourColor(playerFourColorButton1.getBackground());
         }
         if(e.getActionCommand().equals("playerFourColorButton2")) {
-            highlightButton(playerThreeColorButton2, playerThreeColorButton1, playerThreeColorButton3);
+            highlightButton(playerFourColorButton2, playerFourColorButton1, playerFourColorButton3);
             controller.setPlayerFourColor(playerFourColorButton2.getBackground());
         }
         if(e.getActionCommand().equals("playerFourColorButton3")) {

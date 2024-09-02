@@ -28,7 +28,7 @@ public class StartWindowController {
         return boardChoice != null;
     }
     public boolean colorsSet() {
-        return playerOneColor != null && playerTwoColor != null;
+        return playerOneColor != null && playerTwoColor != null && playerThreeColor != null && playerFourColor != null;
     }
 
     public void createStartWindow() {
