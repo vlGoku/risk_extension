@@ -26,6 +26,8 @@ public class BoardView extends JFrame implements ActionListener {
 
     public JButton playerOneCards;
     public JButton playerTwoCards;
+    public JButton playerThreeCards;
+    public JButton playerFourCards;
 
     GridBagLayout boardLayout = new GridBagLayout();
     GridBagConstraints boardConstraints = new GridBagConstraints();
@@ -134,9 +136,11 @@ public class BoardView extends JFrame implements ActionListener {
         playerOneCards.setText(text);
     }
 
-    public void setPlayerTwoCardsButtonText(String text) {
-        playerTwoCards.setText(text);
-    }
+    public void setPlayerTwoCardsButtonText(String text) { playerTwoCards.setText(text); }
+
+    public void setPlayerThreeCardsButtonText(String text) { playerThreeCards.setText(text); }
+
+    public void setPlayerFourCardsButtonText(String text) { playerFourCards.setText(text); }
 
 
 
@@ -159,6 +163,20 @@ public class BoardView extends JFrame implements ActionListener {
             (boardController.getPhase().equals("Attack Phase") || boardController.getPhase().equals("Fortification Phase")))
         {
             boardController.playerTwoSetCardsPhase();
+        }
+        if(boardController.getCurrentPlayer() == boardController.getPlayerThree() &&
+                e.getActionCommand().equals("playerThreeCards") &&
+                boardController.getPlayerThree().getCards() >= 3 &&
+                (boardController.getPhase().equals("Attack Phase") || boardController.getPhase().equals("Fortification Phase")))
+        {
+            boardController.playerThreeSetCardsPhase();
+        }
+        if(boardController.getCurrentPlayer() == boardController.getPlayerFour() &&
+                e.getActionCommand().equals("playerFourCards") &&
+                boardController.getPlayerFour().getCards() >= 3 &&
+                (boardController.getPhase().equals("Attack Phase") || boardController.getPhase().equals("Fortification Phase")))
+        {
+            boardController.playerFourSetCardsPhase();
         }
 
         if(e.getActionCommand().equals("End Phase")) {

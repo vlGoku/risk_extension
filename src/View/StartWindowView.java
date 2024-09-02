@@ -18,12 +18,20 @@ public class StartWindowView implements ActionListener {
 
     JTextField playerOneName;
     JTextField playerTwoName;
+    JTextField playerThreeName;
+    JTextField playerFourName;
     JButton playerOneColorButton1;
     JButton playerOneColorButton2;
     JButton playerOneColorButton3;
     JButton playerTwoColorButton1;
     JButton playerTwoColorButton2;
     JButton playerTwoColorButton3;
+    JButton playerThreeColorButton1;
+    JButton playerThreeColorButton2;
+    JButton playerThreeColorButton3;
+    JButton playerFourColorButton1;
+    JButton playerFourColorButton2;
+    JButton playerFourColorButton3;
 
     JButton board1;
     JButton board2;
@@ -87,6 +95,42 @@ public class StartWindowView implements ActionListener {
         playerTwoPanel.add(playerTwoName);
         playerTwoPanel.add(playerTwoColorHeadline);
         playerTwoPanel.add(playerTwoColorButtonPanel);
+
+        JPanel playerThreePanel = new JPanel(new GridLayout(4, 1));
+        playerThreePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        JLabel playerThreeHeadline = new JLabel("Player Three Name: ", JLabel.CENTER);
+        playerThreeName = new JTextField();
+        JLabel playerThreeColorHeadline = new JLabel("Choose Player Three Color: ", JLabel.CENTER);
+        JPanel playerThreeColorButtonPanel = new JPanel(new GridLayout(1, 3));
+        playerThreeColorButtonPanel.setBorder(BorderFactory.createEmptyBorder(0,10,2,10));
+        playerThreeColorButton1 = createButton("", new Color(230, 54, 102), "playerThreeColorButton1");
+        playerThreeColorButton2 = createButton("", new Color(23, 23, 107), "playerThreeColorButton2");
+        playerThreeColorButton3 = createButton("", new Color(100, 200, 66), "playerThreeColorButton3");
+        playerThreeColorButtonPanel.add(playerThreeColorButton1);
+        playerThreeColorButtonPanel.add(playerThreeColorButton2);
+        playerThreeColorButtonPanel.add(playerThreeColorButton3);
+        playerThreePanel.add(playerThreeHeadline);
+        playerThreePanel.add(playerThreeName);
+        playerThreePanel.add(playerThreeColorHeadline);
+        playerThreePanel.add(playerThreeColorButtonPanel);
+
+        JPanel playerFourPanel = new JPanel(new GridLayout(4, 1));
+        playerFourPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        JLabel playerFourHeadline = new JLabel("Player Four Name: ", JLabel.CENTER);
+        playerTwoName = new JTextField();
+        JLabel playerFourColorHeadline = new JLabel("Choose Player Two Color: ", JLabel.CENTER);
+        JPanel playerFourColorButtonPanel = new JPanel(new GridLayout(1, 3));
+        playerFourColorButtonPanel.setBorder(BorderFactory.createEmptyBorder(0,10,2,10));
+        playerFourColorButton1 = createButton("", new Color(33, 61, 72), "playerFourColorButton1");
+        playerFourColorButton2 = createButton("", new Color(190, 178, 69), "playerFourColorButton2");
+        playerFourColorButton3 = createButton("", new Color(12, 22, 166), "playerFourColorButton3");
+        playerFourColorButtonPanel.add(playerFourColorButton1);
+        playerFourColorButtonPanel.add(playerFourColorButton2);
+        playerFourColorButtonPanel.add(playerFourColorButton3);
+        playerFourPanel.add(playerFourHeadline);
+        playerFourPanel.add(playerFourName);
+        playerFourPanel.add(playerFourColorHeadline);
+        playerFourPanel.add(playerFourColorButtonPanel);
 
 
         JPanel boardChoicePanel = new JPanel(new GridLayout(3, 1));
@@ -163,6 +207,30 @@ public class StartWindowView implements ActionListener {
             highlightButton(playerTwoColorButton3, playerTwoColorButton1, playerTwoColorButton2);
             controller.setPlayerTwoColor(playerTwoColorButton3.getBackground());
         }
+        if(e.getActionCommand().equals("playerThreeColorButton1")) {
+            highlightButton(playerThreeColorButton1, playerThreeColorButton2, playerThreeColorButton3);
+            controller.setPlayerThreeColor(playerThreeColorButton1.getBackground());
+        }
+        if(e.getActionCommand().equals("playerThreeColorButton2")) {
+            highlightButton(playerThreeColorButton2, playerThreeColorButton1, playerThreeColorButton3);
+            controller.setPlayerThreeColor(playerThreeColorButton2.getBackground());
+        }
+        if(e.getActionCommand().equals("playerThreeColorButton3")) {
+            highlightButton(playerThreeColorButton3, playerThreeColorButton1, playerThreeColorButton2);
+            controller.setPlayerThreeColor(playerThreeColorButton3.getBackground());
+        }
+        if(e.getActionCommand().equals("playerFourColorButton1")) {
+            highlightButton(playerFourColorButton1, playerFourColorButton2, playerFourColorButton3);
+            controller.setPlayerFourColor(playerFourColorButton1.getBackground());
+        }
+        if(e.getActionCommand().equals("playerFourColorButton2")) {
+            highlightButton(playerThreeColorButton2, playerThreeColorButton1, playerThreeColorButton3);
+            controller.setPlayerFourColor(playerFourColorButton2.getBackground());
+        }
+        if(e.getActionCommand().equals("playerFourColorButton3")) {
+            highlightButton(playerFourColorButton3, playerFourColorButton1, playerFourColorButton2);
+            controller.setPlayerFourColor(playerFourColorButton3.getBackground());
+        }
 
         if (e.getActionCommand().equals("board1")) {
             highlightButton(board1, board2, board3);
@@ -181,9 +249,11 @@ public class StartWindowView implements ActionListener {
             controller.boardChosen() &&
             !playerOneName.getText().isBlank() &&
             !playerTwoName.getText().isBlank() &&
+            !playerThreeName.getText().isBlank() &&
+            !playerFourName.getText().isBlank() &&
             !playerOneName.getText().equals(playerTwoName.getText())) {
 
-            controller.startGame(playerOneName.getText(), playerTwoName.getText());
+            controller.startGame(playerOneName.getText(), playerTwoName.getText(), playerThreeName.getText(), playerFourName.getText());
         }
     }
 }
