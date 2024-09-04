@@ -93,4 +93,64 @@ public class NeighborRelations {
         countryNeighbors.put("D5", new String[] {"D3", "D4", "D6"});
         countryNeighbors.put("D6", new String[] {"D5", "C6"});
     }
+
+    public static void addCountryNeighbors4(Map<String, String[]> countryNeighbors) {
+        countryNeighbors.put("A1", new String[] {"A2", "B1"});
+        countryNeighbors.put("A2", new String[] {"A1", "A3", "A4"});
+        countryNeighbors.put("A3", new String[] {"A2", "C2"});
+        countryNeighbors.put("A4", new String[] {"A2", "A5", "A6"});
+        countryNeighbors.put("A5", new String[] {"A4", "B3"});
+        countryNeighbors.put("A6", new String[] {"A4","C1"});
+
+        countryNeighbors.put("B1", new String[] {"B2", "A1"});
+        countryNeighbors.put("B2", new String[] {"B1", "B4", "B5"});
+        countryNeighbors.put("B3", new String[] {"B4", "A5"});
+        countryNeighbors.put("B4", new String[] {"B2", "B3", "B6"});
+        countryNeighbors.put("B5", new String[] {"B2", "D4"});
+        countryNeighbors.put("B6", new String[] {"B4", "D1"});
+
+        countryNeighbors.put("C1", new String[] {"C3", "A6"});
+        countryNeighbors.put("C2", new String[] {"C5", "A3"});
+        countryNeighbors.put("C3", new String[] {"C1", "C4", "C5"});
+        countryNeighbors.put("C4", new String[] {"C3", "D2"});
+        countryNeighbors.put("C5", new String[] {"C2", "C3", "C6"});
+        countryNeighbors.put("C6", new String[] {"C5", "D6"});
+
+        countryNeighbors.put("D1", new String[] {"D3", "B6"});
+        countryNeighbors.put("D2", new String[] {"D3", "C4"});
+        countryNeighbors.put("D3", new String[] {"D1", "D2", "D5"});
+        countryNeighbors.put("D4", new String[] {"D5", "B5"});
+        countryNeighbors.put("D5", new String[] {"D3", "D4", "D6"});
+        countryNeighbors.put("D6", new String[] {"D5", "C6"});
+    }
+
+    public static void addCountryNeighbors5(Map<String, String[]> countryNeighbors) {
+        countryNeighbors.put("A1", new String[] {"A2", "B1"});
+        countryNeighbors.put("A2", new String[] {"A1", "A3", "A4"});
+        countryNeighbors.put("A3", new String[] {"A2", "C2"});
+        countryNeighbors.put("A4", new String[] {"A2", "A5", "A6"});
+        countryNeighbors.put("A5", new String[] {"A4", "B3"});
+        countryNeighbors.put("A6", new String[] {"A4","C1"});
+
+        countryNeighbors.put("B1", new String[] {"B2", "A1"});
+        countryNeighbors.put("B2", new String[] {"B1", "B4", "B5"});
+        countryNeighbors.put("B3", new String[] {"B4", "A5"});
+        countryNeighbors.put("B4", new String[] {"B2", "B3", "B6"});
+        countryNeighbors.put("B5", new String[] {"B2", "D4"});
+        countryNeighbors.put("B6", new String[] {"B4", "D1"});
+
+        countryNeighbors.put("C1", new String[] {"C3", "A6"});
+        countryNeighbors.put("C2", new String[] {"C5", "A3"});
+        countryNeighbors.put("C3", new String[] {"C1", "C4", "C5"});
+        countryNeighbors.put("C4", new String[] {"C3", "D2"});
+        countryNeighbors.put("C5", new String[] {"C2", "C3", "C6"});
+        countryNeighbors.put("C6", new String[] {"C5", "D6"});
+
+        countryNeighbors.put("D1", new String[] {"D3", "B6"});
+        countryNeighbors.put("D2", new String[] {"D3", "C4"});
+        countryNeighbors.put("D3", new String[] {"D1", "D2", "D5"});
+        countryNeighbors.put("D4", new String[] {"D5", "B5"});
+        countryNeighbors.put("D5", new String[] {"D3", "D4", "D6"});
+        countryNeighbors.put("D6", new String[] {"D5", "C6"});
+    }
 }

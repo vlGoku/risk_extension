@@ -132,8 +132,8 @@ public class FightController {
             boardController.getCurrentPlayer().addCards(1);
             boardView.setPlayerOneCardsButtonText(boardController.getPlayerOne().getName() + " Cards: " + boardController.getPlayerOne().getCards());
             boardView.setPlayerTwoCardsButtonText(boardController.getPlayerTwo().getName() + " Cards: " + boardController.getPlayerTwo().getCards());
-            boardView.setPlayerThreeCardsButtonText(boardController.getPlayerThree().getName() + " Cards: " + boardController.getPlayerThree().getCards());
-            boardView.setPlayerFourCardsButtonText(boardController.getPlayerFour().getName() + " Cards: " + boardController.getPlayerFour().getCards());
+            boardView.setPlayerThreeCardsButtonText(boardController.getPlayerThree().getName() + " Cards: " + boardController.getPlayerThree().getCards()); //setter for player three cards text
+            boardView.setPlayerFourCardsButtonText(boardController.getPlayerFour().getName() + " Cards: " + boardController.getPlayerFour().getCards()); //setter for player four cards text
         }
 
         // Colors of countries will be set to their owners color

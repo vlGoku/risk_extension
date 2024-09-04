@@ -26,8 +26,8 @@ public class BoardView extends JFrame implements ActionListener {
 
     public JButton playerOneCards;
     public JButton playerTwoCards;
-    public JButton playerThreeCards;
-    public JButton playerFourCards;
+    public JButton playerThreeCards; //added cards for player three
+    public JButton playerFourCards; //added cards for player four
 
     GridBagLayout boardLayout = new GridBagLayout();
     GridBagConstraints boardConstraints = new GridBagConstraints();
@@ -46,7 +46,7 @@ public class BoardView extends JFrame implements ActionListener {
         setResizable(false);
 
         boardLayout.columnWidths = new int[] {ROW_WIDTH_OUTSIDE, ROW_WIDTH_INSIDE, ROW_WIDTH_OUTSIDE};
-        boardLayout.rowHeights = new int[] {DICE_ROW_HEIGHT, FIELD_HEIGHT, STAT_ROW_HEIGHT};
+        boardLayout.rowHeights = new int[] {DICE_ROW_HEIGHT, FIELD_HEIGHT, STAT_ROW_HEIGHT, STAT_ROW_HEIGHT};
 
         // Top row of game board
         playerTurn = new JLabel("Player Turn", JLabel.CENTER);
@@ -82,6 +82,8 @@ public class BoardView extends JFrame implements ActionListener {
             }
             case "board2" -> allContinents = continentCreator.createBoard2(this.allCountries, this.allCountryViews);
             case "board3" -> allContinents = continentCreator.createBoard3(this.allCountries, this.allCountryViews);
+            case "board4" -> allContinents = continentCreator.createBoard4(this.allCountries, this.allCountryViews); //added case for board 4
+            case "board5" -> allContinents = continentCreator.createBoard5(this.allCountries, this.allCountryViews); //added case for board 5
         }
         allContinents.setBackground(new Color(153,204,255));
 
@@ -98,6 +100,20 @@ public class BoardView extends JFrame implements ActionListener {
         playerTwoCards.addActionListener(this);
         playerTwoCards.setActionCommand("playerTwoCards");
 
+        //Extension cards for player three
+        playerThreeCards = new JButton(this.boardController.getPlayerThree().getName() + " Cards: 0");
+        playerThreeCards.setOpaque(true);
+        playerThreeCards.setBackground(Color.ORANGE);
+        playerThreeCards.addActionListener(this);
+        playerThreeCards.setActionCommand("playerThreeCards");
+
+        //Extension cards for player four
+        playerFourCards = new JButton(this.boardController.getPlayerFour().getName() + " Cards: 0");
+        playerFourCards.setOpaque(true);
+        playerFourCards.setBackground(Color.ORANGE);
+        playerFourCards.addActionListener(this);
+        playerFourCards.setActionCommand("playerFourCards");
+
         attackButton = new JButton("Attack");
         attackButton.addActionListener(this);
         attackButton.setActionCommand("fight");
@@ -110,9 +126,11 @@ public class BoardView extends JFrame implements ActionListener {
         boardPanel.add(allContinents, Helper.buildBoardConstraints(boardConstraints,1,0,1,3));
         boardPanel.add(playerOneCards, Helper.buildBoardConstraints(boardConstraints,2,0,1,1));
         boardPanel.add(playerTwoCards, Helper.buildBoardConstraints(boardConstraints,2,2,1,1));
-        boardPanel.add(attackButton, Helper.buildBoardConstraints(boardConstraints,2,1,1,1));
+        boardPanel.add(playerThreeCards, Helper.buildBoardConstraints(boardConstraints,3,0,1,1)); //Displays Cards of player three
+        boardPanel.add(playerFourCards, Helper.buildBoardConstraints(boardConstraints,3,2,1,1)); //Displays Cards of player four
+        boardPanel.add(attackButton, Helper.buildBoardConstraints(boardConstraints,2,1,2,1));
 
-        boardPanel.setPreferredSize(new Dimension(FIELD_WIDTH, DICE_ROW_HEIGHT + FIELD_HEIGHT + STAT_ROW_HEIGHT));
+        boardPanel.setPreferredSize(new Dimension(FIELD_WIDTH, DICE_ROW_HEIGHT + FIELD_HEIGHT + STAT_ROW_HEIGHT + STAT_ROW_HEIGHT)); //added a second STAT_ROW_HEIGHT for player three & four
         setContentPane(boardPanel);
 
         pack();
@@ -138,9 +156,9 @@ public class BoardView extends JFrame implements ActionListener {
 
     public void setPlayerTwoCardsButtonText(String text) { playerTwoCards.setText(text); }
 
-    public void setPlayerThreeCardsButtonText(String text) { playerThreeCards.setText(text); }
+    public void setPlayerThreeCardsButtonText(String text) { playerThreeCards.setText(text); } //setter player three
 
-    public void setPlayerFourCardsButtonText(String text) { playerFourCards.setText(text); }
+    public void setPlayerFourCardsButtonText(String text) { playerFourCards.setText(text); } //Setter player four
 
 
 
@@ -164,6 +182,7 @@ public class BoardView extends JFrame implements ActionListener {
         {
             boardController.playerTwoSetCardsPhase();
         }
+        //extended for player three
         if(boardController.getCurrentPlayer() == boardController.getPlayerThree() &&
                 e.getActionCommand().equals("playerThreeCards") &&
                 boardController.getPlayerThree().getCards() >= 3 &&
@@ -171,6 +190,7 @@ public class BoardView extends JFrame implements ActionListener {
         {
             boardController.playerThreeSetCardsPhase();
         }
+        //extended for player four
         if(boardController.getCurrentPlayer() == boardController.getPlayerFour() &&
                 e.getActionCommand().equals("playerFourCards") &&
                 boardController.getPlayerFour().getCards() >= 3 &&

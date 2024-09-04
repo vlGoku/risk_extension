@@ -16,6 +16,7 @@ public class StartWindowView implements ActionListener {
 
     JFrame frame;
 
+    //added colors for player three and four
     JTextField playerOneName;
     JTextField playerTwoName;
     JTextField playerThreeName;
@@ -36,6 +37,8 @@ public class StartWindowView implements ActionListener {
     JButton board1;
     JButton board2;
     JButton board3;
+    JButton board4;
+    JButton board5;
 
     GridBagLayout startWindowLayout = new GridBagLayout();
     GridBagConstraints startWindowConstraints = new GridBagConstraints();
@@ -53,6 +56,7 @@ public class StartWindowView implements ActionListener {
         frame.setSize(800,800);
         frame.setResizable(false);
 
+        //Extended to two rows
         startWindowLayout.rowHeights = new int[] { HEADLINE_HEIGHT, NAME_HEIGHT, NAME_HEIGHT, BOARD_CHOICE_HEIGHT};
         startWindowLayout.columnWidths = new int[] { PLAYER_NAME_WIDTH, PLAYER_NAME_WIDTH};
 
@@ -60,6 +64,7 @@ public class StartWindowView implements ActionListener {
         headline.setFont(new Font(headline.getFont().getName(), Font.PLAIN, 20));
 
 
+        //Extended to four players
         JPanel playerOnePanel = new JPanel(new GridLayout(4, 1));
         playerOnePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         JLabel playerOneHeadline = new JLabel("Player One Name: ", JLabel.CENTER);
@@ -140,6 +145,9 @@ public class StartWindowView implements ActionListener {
         board1 = createButton("Board 1", null, "board1");
         board2 = createButton("Board 2", null, "board2");
         board3 = createButton("Board 3", null, "board3");
+        board4 = createButton("Board 4", null, "board4");
+        board5 = createButton("Board 5", null, "board5");
+
 
         JButton startButton = new JButton("Start Game");
         startButton.addActionListener(this);
@@ -147,10 +155,13 @@ public class StartWindowView implements ActionListener {
         buttonPanel.add(board1);
         buttonPanel.add(board2);
         buttonPanel.add(board3);
+        buttonPanel.add(board4);
+        buttonPanel.add(board5);
         boardChoicePanel.add(choice);
         boardChoicePanel.add(buttonPanel);
         boardChoicePanel.add(startButton);
 
+        //added panel for player three and four
         startWindowPanel.add(headline, Helper.buildBoardConstraints(startWindowConstraints, 0, 0, 1, 2));
         startWindowPanel.add(playerOnePanel, Helper.buildBoardConstraints(startWindowConstraints, 1, 0, 1, 1));
         startWindowPanel.add(playerTwoPanel, Helper.buildBoardConstraints(startWindowConstraints, 1, 1, 1, 1));
@@ -183,6 +194,15 @@ public class StartWindowView implements ActionListener {
         activeButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
     }
 
+    public void highlightButtonBoard(JButton activeButton, JButton notActiveButton1, JButton notActiveButton2,JButton notActiveButton3,JButton notActiveButton4) {
+        notActiveButton1.setBorder(BorderFactory.createLineBorder(new Color(228, 229, 227), 2));
+        notActiveButton2.setBorder(BorderFactory.createLineBorder(new Color(228, 229, 227), 2));
+        notActiveButton3.setBorder(BorderFactory.createLineBorder(new Color(228, 229, 227), 2));
+        notActiveButton4.setBorder(BorderFactory.createLineBorder(new Color(228, 229, 227), 2));
+        activeButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+    }
+
+    //added color for player three and four
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("playerOneColorButton1")) {
@@ -235,17 +255,26 @@ public class StartWindowView implements ActionListener {
         }
 
         if (e.getActionCommand().equals("board1")) {
-            highlightButton(board1, board2, board3);
+            highlightButtonBoard(board1, board2, board3, board4, board5);
             controller.setBoardChoice("board1");
         }
         if (e.getActionCommand().equals("board2")) {
-            highlightButton(board2, board1, board3);
+            highlightButtonBoard(board2, board1, board3, board4, board5);
             controller.setBoardChoice("board2");
         }
         if (e.getActionCommand().equals("board3")) {
-            highlightButton(board3, board1, board2);
+            highlightButtonBoard(board3, board1, board2, board4, board5);
             controller.setBoardChoice("board3");
         }
+        if (e.getActionCommand().equals("board4")) {
+            highlightButtonBoard(board4, board1, board2, board3, board5);
+            controller.setBoardChoice("board4");
+        }
+        if (e.getActionCommand().equals("board5")) {
+            highlightButtonBoard(board5, board1, board2, board3, board4);
+            controller.setBoardChoice("board5");
+        }
+        //added condition for player three and four
         if (e.getActionCommand().equals("startButton") &&
             controller.colorsSet() &&
             controller.boardChosen() &&

@@ -23,23 +23,25 @@ public class BoardController {
     Map<String, CountryView> allCountryViews = new HashMap<>();
     Map<String, String[]> countryNeighbors = new HashMap<>();
 
+
     private final String boardChoice;
     private final Player playerOne;
     private final Player playerTwo;
-    private final Player playerThree;
-    private final Player playerFour;
+    private final Player playerThree; //added player three
+    private final Player playerFour; //added player four
     private Player currentPlayer;
     public FightController fightController;
     private SendArmyController sendArmyController;
 
 
+    //extended the parameters
     public BoardController(String boardChoice, String playerOneName, String playerTwoName, String playerThreeName, String playerFourName,
                            Color playerOneColor, Color playerTwoColor, Color playerThreeColor, Color playerFourColor) {
         this.boardChoice = boardChoice;
         this.playerOne = new Player(playerOneName, playerOneColor);
         this.playerTwo = new Player(playerTwoName, playerTwoColor);
-        this.playerThree = new Player(playerThreeName, playerThreeColor);
-        this.playerFour = new Player(playerFourName, playerFourColor);
+        this.playerThree = new Player(playerThreeName, playerThreeColor); //added player three
+        this.playerFour = new Player(playerFourName, playerFourColor); //added player four
         this.currentPlayer = playerOne;
     }
 
@@ -76,8 +78,8 @@ public class BoardController {
     public Player getPlayerTwo() {
         return this.playerTwo;
     }
-    public Player getPlayerThree() { return this.playerThree; }
-    public Player getPlayerFour() { return this.playerFour; }
+    public Player getPlayerThree() { return this.playerThree; } //getter for player three
+    public Player getPlayerFour() { return this.playerFour; } //getter for player four
 
     // Depending on the board, sets the all other countries which a country can attack or send soldiers to
     public void setCountryNeighbors(String boardChoice) {
@@ -85,6 +87,8 @@ public class BoardController {
             case "board1" -> NeighborRelations.addCountryNeighbors1(countryNeighbors);
             case "board2" -> NeighborRelations.addCountryNeighbors2(countryNeighbors);
             case "board3" -> NeighborRelations.addCountryNeighbors3(countryNeighbors);
+            case "board4" -> NeighborRelations.addCountryNeighbors4(countryNeighbors); //TODO: Change the neighbors
+            case "board5" -> NeighborRelations.addCountryNeighbors5(countryNeighbors); //TODO: Change the neighbors
         }
     }
 
@@ -147,6 +151,7 @@ public class BoardController {
                 this.currentPlayer = this.currentPlayer == this.playerTwo ? this.playerThree : this.playerTwo;
                 boardView.setPlayerTurnLabel(turn);
 
+            //place soldiers for player three
             } else if (turn.equals(this.playerThree.getName() + "'s Turn") && (country.getSoldiersInside() == 0 || allCountriesFilled())) {
                 country.setOwner(this.playerThree);
                 this.playerThree.removeSoldiers(1);
@@ -158,6 +163,7 @@ public class BoardController {
                 this.currentPlayer = this.currentPlayer == this.playerThree ? this.playerFour : this.playerThree;
                 boardView.setPlayerTurnLabel(turn);
 
+            //place soldiers for player four
             } else if (turn.equals(this.playerFour.getName() + "'s Turn") && (country.getSoldiersInside() == 0 || allCountriesFilled())) {
                 country.setOwner(this.playerFour);
                 this.playerFour.removeSoldiers(1);
@@ -170,6 +176,7 @@ public class BoardController {
                 boardView.setPlayerTurnLabel(turn);
 
                 // Switches to next phase when the players have no more soldiers to place
+                //changed to player four soldiers capacity
                 if (this.playerFour.getSoldiers() == 0) {
                     setPhase("Attack Phase");
                     boardView.setCurrentPhaseLabel(getPhase());
@@ -230,6 +237,7 @@ public class BoardController {
         boardView.setCurrentPhaseLabel(this.playerTwo.getName() + ": Set " + this.playerOne.getSoldiers() + " Soldier(s)");
     }
 
+    //player three set cards phase
     public void playerThreeSetCardsPhase() {
         this.playerThree.cardsToSoldiers();
         boardView.setPlayerThreeCardsButtonText(this.playerThree.getName() + " Cards: " + this.playerThree.getCards());
@@ -238,6 +246,7 @@ public class BoardController {
         boardView.setCurrentPhaseLabel(this.playerThree.getName() + ": Set " + this.playerTwo.getSoldiers() + " Soldier(s)");
     }
 
+    //player four set cards phase
     public void playerFourSetCardsPhase() {
         this.playerFour.cardsToSoldiers();
         boardView.setPlayerFourCardsButtonText(this.playerFour.getName() + " Cards: " + this.playerFour.getCards());

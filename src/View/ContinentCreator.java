@@ -23,6 +23,21 @@ public class ContinentCreator {
             "C1", "C2", "C3", "C4", "C5", "C6",
             "D1", "D2", "D3", "D4", "D5", "D6"};
 
+    //new countries
+    //TODO use new countries
+    String[][] allCountryNamesNew = new String[][] {
+            //America
+            {"Western US", "Northwest Territory", "Eastern US", "Alberta", "Central America"},
+            //Europe
+            {"Iceland", "Great Britain", "Western Europe", "Scandinavia", "Northern Europe", "Ukraine", "Southern Europe"},
+            //Africa
+            {"North Africa", "Egypt", "Congo"},
+            //Asia
+            {"China", "India", "Japan", "Mongolia", "Middle East", "Yaktusk"},
+            //Australia
+            {"Indonesia", "New Guinea"}
+    };
+
     Color[] allContinentColors = new Color[] {
             new Color(249,225,68),
             new Color(241,115,115),
@@ -83,6 +98,31 @@ public class ContinentCreator {
         }
     };
 
+    //TODO make this work
+    public void createAndPlaceAllCountriesNew(int[][] countryPlacements, Map<String, Country> allCountries, Map<String, CountryView> allCountryViews) {
+        for (int i = 0; i < countryPlacements.length; i++) {
+            for (int j = 0; j < countryPlacements.length; j++) {
+                Country newCountry = new Country(allCountryNamesNew[i][j], allCountryNamesNew[i][j].substring(0, 1));
+                allCountries.put(newCountry.getName(), newCountry);
+                CountryView cView = new CountryView(controller, newCountry);
+
+                Color countryColor = switch (newCountry.getContinent()) {
+                    case "A" -> new Color(249, 225, 68);
+                    case "B" -> new Color(241, 115, 115);
+                    case "C" -> new Color(99, 189, 89);
+                    case "D" -> new Color(67, 80, 156);
+                    default -> new Color(0, 0, 0);
+                };
+
+                JPanel countryPanel = cView.createCountry(countryColor, newCountry.getName());
+                continentPanel.add(countryPanel, buildBoardConstraints(continentConstraints, countryPlacements[i][0], countryPlacements[i][1],
+                        countryPlacements[i][2], countryPlacements[i][3]));
+                allCountryViews.put(newCountry.getName(), cView);
+
+            }
+        }
+    };
+
     public JPanel createBoard2(Map<String, Country> allCountries, Map<String, CountryView> allCountryViews) {
         
         continentLayout.columnWidths = new int[] {100,100,100,100,100,100,100,100};
@@ -99,6 +139,24 @@ public class ContinentCreator {
         continentLayout.rowHeights = new int[] {100,100,100,100,100,100,100,100};
 
         createAndPlaceAllCountries(CountryCoordinates.allCountryPlacements3, allCountries, allCountryViews);
+
+        return continentPanel;
+    }
+
+    public JPanel createBoard4(Map<String, Country> allCountries, Map<String, CountryView> allCountryViews){
+        continentLayout.columnWidths = new int[] {100, 100, 100, 100, 100, 100, 100, 100};
+        continentLayout.rowHeights = new int[] {100,100,100,100,100,100,100,100};
+
+        createAndPlaceAllCountries(CountryCoordinates.allCountryPlacements4, allCountries, allCountryViews);
+
+        return continentPanel;
+    }
+
+    public JPanel createBoard5(Map<String, Country> allCountries, Map<String, CountryView> allCountryViews){
+        continentLayout.columnWidths = new int[] {100, 100, 100, 100, 100, 100, 100, 100};
+        continentLayout.rowHeights = new int[] {100,100,100,100,100,100,100,100};
+
+        createAndPlaceAllCountries(CountryCoordinates.allCountryPlacements5, allCountries, allCountryViews);
 
         return continentPanel;
     }

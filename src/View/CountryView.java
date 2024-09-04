@@ -15,6 +15,15 @@ public class CountryView implements MouseListener {
     JLabel soldierIconLabel;
     ImageIcon soldierIcon = new ImageIcon(System.getProperty("user.dir") + "\\src\\Images\\soldier_icon.png");
 
+    //canon Icon
+    JLabel canonLabel;
+    JLabel canonIconLabel;
+    ImageIcon canonIcon = new ImageIcon(System.getProperty("user.dir") + "\\src\\Images\\canon_icon.png");
+
+    JLabel horseRiderLabel;
+    JLabel horseRiderIconLabel;
+    ImageIcon horseRiderIcon = new ImageIcon(System.getProperty("user.dir") + "\\src\\Images\\horse_rider_icon.png");
+
     GridBagLayout countryLayout = new GridBagLayout();
     GridBagConstraints countryConstraints = new GridBagConstraints();
     JPanel countryPanel = new JPanel(countryLayout);
@@ -76,6 +85,31 @@ public class CountryView implements MouseListener {
         }
         countryPanel.add(soldierIconLabel, Helper.buildBoardConstraints(countryConstraints, 2, 0, 2, 1));
     }
+
+    //setting canon icon
+    public void setCanonIcons(int canonsInside){
+        countryPanel.remove(canonIconLabel);
+        canonIconLabel = new JLabel();
+        canonIconLabel.setLayout(new GridLayout(2, 10));
+        for (int i = 0; i < canonsInside; i++) {
+            JLabel icon = new JLabel(canonIcon);
+            canonIconLabel.add(icon);
+        }
+        countryPanel.add(canonIconLabel, Helper.buildBoardConstraints(countryConstraints, 2, 0, 2, 1));
+    }
+
+    //setting horse rider icon
+    public void setHorseRiderIcons(int horseRidersInside){
+        countryPanel.remove(horseRiderIconLabel);
+        horseRiderIconLabel = new JLabel();
+        horseRiderIconLabel.setLayout(new GridLayout(2, 10));
+        for (int i = 0; i < horseRidersInside; i++) {
+            JLabel icon = new JLabel(horseRiderIcon);
+            horseRiderIconLabel.add(icon);
+        }
+        countryPanel.add(horseRiderIconLabel, Helper.buildBoardConstraints(countryConstraints, 2, 0, 2, 1));
+    }
+
 
     public void setBackgroundColor(Color color) {
         countryPanel.setBackground(color);

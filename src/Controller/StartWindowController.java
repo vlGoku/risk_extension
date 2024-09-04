@@ -18,8 +18,8 @@ public class StartWindowController {
         playerOneColor = color;
     }
     public void setPlayerTwoColor(Color color) {playerTwoColor = color; }
-    public void setPlayerThreeColor(Color color){playerThreeColor = color; }
-    public void setPlayerFourColor(Color color){playerFourColor = color; }
+    public void setPlayerThreeColor(Color color){playerThreeColor = color; } //setter player three color
+    public void setPlayerFourColor(Color color){playerFourColor = color; } //setter player four color
 
     public void setBoardChoice(String choice) {
         boardChoice = choice;
@@ -28,7 +28,7 @@ public class StartWindowController {
         return boardChoice != null;
     }
     public boolean colorsSet() {
-        return playerOneColor != null && playerTwoColor != null && playerThreeColor != null && playerFourColor != null;
+        return playerOneColor != null && playerTwoColor != null && playerThreeColor != null && playerFourColor != null; //extended to player three and four
     }
 
     public void createStartWindow() {
