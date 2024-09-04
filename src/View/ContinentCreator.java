@@ -42,7 +42,9 @@ public class ContinentCreator {
             new Color(249,225,68),
             new Color(241,115,115),
             new Color(99,189,89),
-            new Color(67,80,156),};
+            new Color(67,80,156),
+            new Color(50, 120, 150),
+    };
 
     public BoardController controller;
 
@@ -102,7 +104,8 @@ public class ContinentCreator {
     public void createAndPlaceAllCountriesNew(int[][] countryPlacements, Map<String, Country> allCountries, Map<String, CountryView> allCountryViews) {
         for (int i = 0; i < countryPlacements.length; i++) {
             for (int j = 0; j < countryPlacements.length; j++) {
-                Country newCountry = new Country(allCountryNamesNew[i][j], allCountryNamesNew[i][j].substring(0, 1));
+                String[] continent = new String[] {"America", "Europe", "Africa", "Asia", "Australia"};
+                Country newCountry = new Country(allCountryNamesNew[i][j], continent[i]);
                 allCountries.put(newCountry.getName(), newCountry);
                 CountryView cView = new CountryView(controller, newCountry);
 
@@ -147,7 +150,7 @@ public class ContinentCreator {
         continentLayout.columnWidths = new int[] {100, 100, 100, 100, 100, 100, 100, 100};
         continentLayout.rowHeights = new int[] {100,100,100,100,100,100,100,100};
 
-        createAndPlaceAllCountries(CountryCoordinates.allCountryPlacements4, allCountries, allCountryViews);
+        createAndPlaceAllCountriesNew(CountryCoordinates.allCountryPlacements4, allCountries, allCountryViews);
 
         return continentPanel;
     }
@@ -156,7 +159,7 @@ public class ContinentCreator {
         continentLayout.columnWidths = new int[] {100, 100, 100, 100, 100, 100, 100, 100};
         continentLayout.rowHeights = new int[] {100,100,100,100,100,100,100,100};
 
-        createAndPlaceAllCountries(CountryCoordinates.allCountryPlacements5, allCountries, allCountryViews);
+        createAndPlaceAllCountriesNew(CountryCoordinates.allCountryPlacements5, allCountries, allCountryViews);
 
         return continentPanel;
     }
