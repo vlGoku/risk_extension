@@ -10,7 +10,8 @@ import java.awt.event.ActionListener;
 
 public class StartWindowView implements ActionListener {
     public static final int HEADLINE_HEIGHT = 50;
-    public static final int NAME_HEIGHT = 150;
+    public static final int PLAYER_CHOOSING_MENU = 30; //player choosing grid
+    public static final int NAME_HEIGHT = 100;
     public static final int BOARD_CHOICE_HEIGHT = 150;
     public static final int PLAYER_NAME_WIDTH = 250;
 
@@ -57,12 +58,33 @@ public class StartWindowView implements ActionListener {
         frame.setResizable(false);
 
         //Extended to two rows
-        startWindowLayout.rowHeights = new int[] { HEADLINE_HEIGHT, NAME_HEIGHT, NAME_HEIGHT, BOARD_CHOICE_HEIGHT};
+        startWindowLayout.rowHeights = new int[] { HEADLINE_HEIGHT, PLAYER_CHOOSING_MENU, PLAYER_CHOOSING_MENU,NAME_HEIGHT, NAME_HEIGHT, BOARD_CHOICE_HEIGHT};
         startWindowLayout.columnWidths = new int[] { PLAYER_NAME_WIDTH, PLAYER_NAME_WIDTH};
 
         JLabel headline = new JLabel("Risk", JLabel.CENTER);
         headline.setFont(new Font(headline.getFont().getName(), Font.PLAIN, 20));
 
+        //TODO Redo
+        JLabel choicesText = new JLabel("Choose how many players want to play", JLabel.CENTER);
+        choicesText.setFont(new Font(headline.getFont().getName(), Font.PLAIN, 20));
+
+        String[] choices = {"2", "3", "4"};
+
+        final JComboBox<String> choicesToPick = new JComboBox<String>(choices);
+
+        ((JLabel) choicesToPick.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
+
+//      First Try
+//        DefaultListCellRenderer listRenderer = new DefaultListCellRenderer() {
+//            @Override
+//            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+//                JLabel renderer = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+//                renderer.setHorizontalAlignment(SwingConstants.CENTER);
+//                return renderer;
+//            }
+//        };
+//
+//        choicesToPick.setRenderer(listRenderer);
 
         //Extended to four players
         JPanel playerOnePanel = new JPanel(new GridLayout(4, 1));
@@ -163,11 +185,13 @@ public class StartWindowView implements ActionListener {
 
         //added panel for player three and four
         startWindowPanel.add(headline, Helper.buildBoardConstraints(startWindowConstraints, 0, 0, 1, 2));
-        startWindowPanel.add(playerOnePanel, Helper.buildBoardConstraints(startWindowConstraints, 1, 0, 1, 1));
-        startWindowPanel.add(playerTwoPanel, Helper.buildBoardConstraints(startWindowConstraints, 1, 1, 1, 1));
-        startWindowPanel.add(playerThreePanel, Helper.buildBoardConstraints(startWindowConstraints, 2, 0, 1, 1));
-        startWindowPanel.add(playerFourPanel, Helper.buildBoardConstraints(startWindowConstraints, 2, 1, 1, 1));
-        startWindowPanel.add(boardChoicePanel, Helper.buildBoardConstraints(startWindowConstraints, 3, 0, 1, 2));
+        startWindowPanel.add(choicesText, Helper.buildBoardConstraints(startWindowConstraints, 1, 0, 1, 0));
+        startWindowPanel.add(choicesToPick, Helper.buildBoardConstraints(startWindowConstraints, 2, 0, 1, 2));
+        startWindowPanel.add(playerOnePanel, Helper.buildBoardConstraints(startWindowConstraints, 3, 0, 1, 1));
+        startWindowPanel.add(playerTwoPanel, Helper.buildBoardConstraints(startWindowConstraints, 3, 1, 1, 1));
+        startWindowPanel.add(playerThreePanel, Helper.buildBoardConstraints(startWindowConstraints, 4, 0, 1, 1));
+        startWindowPanel.add(playerFourPanel, Helper.buildBoardConstraints(startWindowConstraints, 4, 1, 1, 1));
+        startWindowPanel.add(boardChoicePanel, Helper.buildBoardConstraints(startWindowConstraints, 5, 0, 1, 2));
 
         frame.setContentPane(startWindowPanel);
         frame.pack();
