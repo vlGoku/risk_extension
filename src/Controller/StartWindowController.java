@@ -4,10 +4,12 @@ import View.StartWindowView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class StartWindowController {
     JFrame startWindowFrame;
 
+    ArrayList<String> playerColor;
     Color playerOneColor;
     Color playerTwoColor;
     Color playerThreeColor;
@@ -35,8 +37,8 @@ public class StartWindowController {
         startWindowFrame = new StartWindowView(this).drawStartWindowFrame();
     }
 
-    public void startGame(String playerOneName, String playerTwoName, String playerThreeName, String playerFourName) {
-        BoardController board = new BoardController(boardChoice, playerOneName, playerTwoName, playerThreeName, playerFourName, playerOneColor, playerTwoColor, playerThreeColor, playerFourColor);
+    public void startGame(ArrayList<String> playerNames) {
+        BoardController board = new BoardController(boardChoice, playerNames, playerColor);
         board.createBoardView();
 
         startWindowFrame.dispose();

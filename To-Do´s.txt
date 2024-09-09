@@ -1,0 +1,42 @@
+- Es kann zwischen 2 bis 4 Spielenden ausgewählt werden. -> umstellen nur anzahl an spieler im spiel
+- Die Anzahl der Armee pro Spieler:in bei Spielbeginn variiert je Spieleranzahl:
+    2 Spieler = 20 Armeeeinheiten
+    3 Spieler = 25 Armeeeinheiten
+    4 Spieler = 30 Armeeeinheiten
+- Sollte bei einer Karte keine vollständig gleichmäßige Aufteilung möglich sein, da die Anzahl der Territorien nicht durch 2, 3 und/oder 4
+  restlos geteilt werden kann, dann werden soweit möglich alle aufgeteilt und die übrigen Territorien als neutral/unbesetzt gekennzeichnet.
+- Es können auch Truppen vollständig von einem Gebiet abgezogen werden. Dann wird dieses "aufgegeben" und das Territorium wird als neutral gekennzeichnet.
+  Neutrale Territorien können angegriffen und erobert werden.
+  Deren Verteidigung besteht immer aus einem Würfel (als würde sich dort eine Armee befinden) mit einem Maximal-Augenwurf von 2.
+  Es ist also möglich, dass die Eroberung eines neutralen Gebietes scheitert.
+- Die Verstärkungskarten werden erweitert. Zunächst werden die beiden Varianten Kavallerie und Artillerie ergänzt.
+- Bei der Eroberung eines Territorium erhält man zufällig eine Karte.
+  Es können nur drei Karten der gleichen Art (z.B.: 3x Artillerie) oder drei Karten bestehen aus je einer Art
+  (1x Infanterie, 1x Kavallerie, 1x Artillerie) eingetauscht werden.
+- Wenn man drei passende Karten hat, können diese gegen Armeeeinheiten getauscht werden.
+  Es dürfen weiterhin nicht mehr als 5 Karten im Besitz des/der Spielenden sein.
+    3x Infanterie = 4 Einheiten
+    3x Kavallerie = 5 Einheiten
+    3x Artillerie = 6 Einheiten
+    je 1 Symbol = 5 Einheiten
+- Führen Sie unterschiedliche Gewinnbedingungen ein. Jede/r Spielende erhält bei Beginn des Spiels eine Gewinnbedingung, die zu erfüllen ist.
+  Diese kann entweder unterschiedlich oder für alle gleich sein je nach Karte, Spieleranzahl etc.
+  erobere x Territorien
+  erobere x Kontinente
+  erobere Territorien x,y,z,... (diese Aufgabe sollte nicht gleich für alle sein,
+  sondern in den Territorien unterschiedlich jedoch gerne überschneidend, um zu erschweren, dass Personen bereits zu Beginn das Spiel beenden)
+  erobere Kontinent x und die Territorien x,y,... (diese Aufgabe sollte nicht für alle gleich sein,
+  kann sich aber in den Kontinenten und/oder Territorien überschneiden)
+  erobere Territorien, sodass eine ununterbrochene Ost-West/Nord-Süd Verbindung besteht
+- Kennzeichnen Sie im Programm klar Ihre Ergänzungen und Anpassungen.
+
+ToDo My Todos
+- funktionalität einbauen um wirklich die spielerzahl zu haben, die ausgewählt wird
+- evtl Map erweitern
+- game logik
+- Karten (z.B. Kavallerie, Artillerie)
+- Gewinnbedingungen
+- Kennzeichnungen der Änderungen
+- Truppen von einem Gebiet abziehen
+- evtl Anzahl an Truppen je nach Spieler
+- Nachbarn zuordnen

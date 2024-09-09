@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class StartWindowView implements ActionListener {
     public static final int HEADLINE_HEIGHT = 50;
@@ -68,7 +71,7 @@ public class StartWindowView implements ActionListener {
         JLabel choicesText = new JLabel("Choose how many players want to play", JLabel.CENTER);
         choicesText.setFont(new Font(headline.getFont().getName(), Font.PLAIN, 20));
 
-        String[] choices = {"2", "3", "4"};
+        String[] choices = {"4", "3", "2"};
 
         final JComboBox<String> choicesToPick = new JComboBox<String>(choices);
 
@@ -198,6 +201,57 @@ public class StartWindowView implements ActionListener {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
+        //TODO evtl vereinfachen
+        choicesToPick.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String choicePicked = Objects.requireNonNull(choicesToPick.getSelectedItem()).toString();
+                if(Objects.equals(choicePicked, "2")){
+                    playerThreePanel.setBackground(Color.gray);
+                    playerThreeName.setBackground(Color.gray);
+                    playerThreeName.setEnabled(false);
+                    playerThreeColorButton1.setEnabled(false);
+                    playerThreeColorButton2.setEnabled(false);
+                    playerThreeColorButton3.setEnabled(false);
+                    playerFourPanel.setBackground(Color.gray);
+                    playerFourName.setBackground(Color.gray);
+                    playerFourName.setEnabled(false);
+                    playerFourName.setEnabled(false);
+                    playerFourColorButton1.setEnabled(false);
+                    playerFourColorButton2.setEnabled(false);
+                    playerFourColorButton3.setEnabled(false);
+                } else if(Objects.equals(choicePicked, "3")){
+                    System.out.println("Drei Spieler sollen spielen");
+                    playerThreePanel.setBackground(playerOnePanel.getBackground());
+                    playerThreeName.setBackground(playerOneName.getBackground());
+                    playerThreeName.setEnabled(true);
+                    playerThreeColorButton1.setEnabled(true);
+                    playerThreeColorButton2.setEnabled(true);
+                    playerThreeColorButton3.setEnabled(true);
+                    playerFourPanel.setBackground(Color.gray);
+                    playerFourName.setBackground(Color.gray);
+                    playerFourName.setEnabled(false);
+                    playerFourColorButton1.setEnabled(false);
+                    playerFourColorButton2.setEnabled(false);
+                    playerFourColorButton3.setEnabled(false);
+                } else if(Objects.equals(choicePicked, "4")) {
+                    System.out.println("Vier Spieler sollen spielen");
+                    playerThreePanel.setBackground(playerOnePanel.getBackground());
+                    playerThreeName.setBackground(playerOneName.getBackground());
+                    playerThreeName.setEnabled(true);
+                    playerThreeColorButton1.setEnabled(true);
+                    playerThreeColorButton2.setEnabled(true);
+                    playerThreeColorButton3.setEnabled(true);
+                    playerFourPanel.setBackground(playerOnePanel.getBackground());
+                    playerFourName.setBackground(playerOneName.getBackground());
+                    playerFourName.setEnabled(true);
+                    playerFourColorButton1.setEnabled(true);
+                    playerFourColorButton2.setEnabled(true);
+                    playerFourColorButton3.setEnabled(true);
+                }
+            }
+        });
+
         return frame;
     }
 
@@ -229,6 +283,7 @@ public class StartWindowView implements ActionListener {
     //added color for player three and four
     @Override
     public void actionPerformed(ActionEvent e) {
+        ArrayList<String> playerNames = new ArrayList<>();
         if (e.getActionCommand().equals("playerOneColorButton1")) {
             highlightButton(playerOneColorButton1, playerOneColorButton2, playerOneColorButton3);
             controller.setPlayerOneColor(playerOneColorButton1.getBackground());
@@ -308,7 +363,8 @@ public class StartWindowView implements ActionListener {
             !playerFourName.getText().isBlank() &&
             !playerOneName.getText().equals(playerTwoName.getText())) {
 
-            controller.startGame(playerOneName.getText(), playerTwoName.getText(), playerThreeName.getText(), playerFourName.getText());
+            controller.startGame(playerNames);
         }
+
     }
 }

@@ -8,6 +8,7 @@ import View.CountryView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,19 +36,17 @@ public class BoardController {
 
 
     //extended the parameters
-    public BoardController(String boardChoice, String playerOneName, String playerTwoName, String playerThreeName, String playerFourName,
-                           Color playerOneColor, Color playerTwoColor, Color playerThreeColor, Color playerFourColor) {
+    public BoardController(String boardChoice, ArrayList<String> playerNames, ArrayList<String> playerColor) {
         this.boardChoice = boardChoice;
-        this.playerOne = new Player(playerOneName, playerOneColor);
-        this.playerTwo = new Player(playerTwoName, playerTwoColor);
-        this.playerThree = new Player(playerThreeName, playerThreeColor); //added player three
-        this.playerFour = new Player(playerFourName, playerFourColor); //added player four
+
+//        this.playerOne = new Player(playerOneName, playerOneColor);
+//        this.playerTwo = new Player(playerTwoName, playerTwoColor);
+//        this.playerThree = new Player(playerThreeName, playerThreeColor); //added player three
+//        this.playerFour = new Player(playerFourName, playerFourColor); //added player four
         this.currentPlayer = playerOne;
     }
 
     public void createBoardView() {
-        System.out.println(this.playerOne.getPlayerColor());
-        System.out.println(this.playerTwo.getPlayerColor());
         boardView = new BoardView(this.boardChoice, allCountries, this, allCountryViews);
         boardView.setVisible(true);
         boardView.setCurrentPhaseLabel(getPhase());
@@ -127,6 +126,7 @@ public class BoardController {
 
     // Logic for the first phase, where both players choose and fill their starting countries
     // changing to 4 players and the order of putting the soldiers into the country
+    //TODO Change to ArrayList
     public void placeSoldiers(Country country, CountryView view) {
             if (turn.equals(this.playerOne.getName() + "'s Turn")  && (country.getSoldiersInside() == 0 || allCountriesFilled())) {
                 country.setOwner(this.playerOne);
@@ -309,6 +309,7 @@ public class BoardController {
     }
 
     // Sets new Soldiers at beginning of turn and switches to other player, when first one is done
+    //TODO Change to ArrayList
     public void setNewTroops(Country country, CountryView view) {
         if(country.getOwner() == this.currentPlayer) {
             country.addSoldiersInside(1);
@@ -352,6 +353,7 @@ public class BoardController {
 
     public void checkIfTooManyCards() {
         // If player has more than 5 cards, he is forced to use them
+        //TODO change to ArrayList
         if (this.currentPlayer.getCards() > 5) {
             if (this.currentPlayer == this.playerOne) {
                 this.playerOne.cardsToSoldiers();
@@ -430,6 +432,7 @@ public class BoardController {
     }
 
 
+    //Only for two players right now
     public void endTurn() {
         this.currentPlayer = this.currentPlayer == this.playerOne ? this.playerTwo : this.playerOne;
         turn = this.currentPlayer.getName() + "'s Turn";
