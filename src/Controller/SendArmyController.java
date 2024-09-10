@@ -67,11 +67,11 @@ public class SendArmyController {
 
         // After the set amount of fortifications, the players turn end automatically
         fortifications--;
-        if(fortifications == 0) {
-            boardController.endTurn();
-        } else {
-            boardView.setCurrentPhaseLabel("Fortifications: " + fortifications + " Left");
-        }
+//        if(fortifications == 0) {
+//            boardController.endTurn();
+//        } else {
+//            boardView.setCurrentPhaseLabel("Fortifications: " + fortifications + " Left");
+//        }
         sendingCountry = null;
         receivingCountry = null;
     }

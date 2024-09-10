@@ -62,10 +62,10 @@ public class CountryView implements MouseListener {
     // Updates the country after fights and fortifications
     public void updateCountryPanel() {
         setSoldierLabel("Soldiers: " + country.getSoldiersInside());
-        if(country.getOwner() == boardController.getPlayerOne()) {
-            setBackgroundColor(boardController.getPlayerOne().getPlayerColor());
+        if(country.getOwner() == boardController.getCurrentPlayer()) {
+            setBackgroundColor(boardController.getCurrentPlayer().getPlayerColor());
         } else {
-            setBackgroundColor(boardController.getPlayerTwo().getPlayerColor());
+            setBackgroundColor(boardController.getCurrentPlayer().getPlayerColor());
         }
 
         setSoldierIcons(country.getSoldiersInside());
@@ -135,23 +135,23 @@ public class CountryView implements MouseListener {
         if(SwingUtilities.isLeftMouseButton(e)) {
 
             if(boardController.getPhase().equals("Set Soldiers") && (country.getOwner() == null || country.getOwner() == boardController.getCurrentPlayer())) {
-                boardController.placeSoldiers(country, this);
+                boardController.placeSoldiersUniversal(country, this);
             }
-            else if(boardController.getPhase().equals("Attack Phase")){
-                boardController.attackPhase(country, this);
-            }
-            else if (boardController.getPhase().equals(boardController.getPlayerOne().getName() + ": Set Soldiers") && country.getOwner() == boardController.getPlayerOne()) {
-                boardController.playerOneSetCardTroops(country, this);
-            }
-            else if (boardController.getPhase().equals(boardController.getPlayerTwo().getName() + ": Set Soldiers") && country.getOwner() == boardController.getPlayerTwo()) {
-                boardController.playerTwoSetCardTroops(country, this);
-            }
-            else if (boardController.getPhase().equals("Fortification Phase")) {
-                boardController.fortificationPhase(country, this);
-            }
-            else if (boardController.getPhase().equals("New Troops Phase")) {
-                boardController.setNewTroops(country, this);
-            }
+//            else if(boardController.getPhase().equals("Attack Phase")){
+//                boardController.attackPhase(country, this);
+//            }
+//            else if (boardController.getPhase().equals(boardController.getPlayerOne().getName() + ": Set Soldiers") && country.getOwner() == boardController.getPlayerOne()) {
+//                boardController.playerOneSetCardTroops(country, this);
+//            }
+//            else if (boardController.getPhase().equals(boardController.getPlayerTwo().getName() + ": Set Soldiers") && country.getOwner() == boardController.getPlayerTwo()) {
+//                boardController.playerTwoSetCardTroops(country, this);
+//            }
+//            else if (boardController.getPhase().equals("Fortification Phase")) {
+//                boardController.fortificationPhase(country, this);
+//            }
+//            else if (boardController.getPhase().equals("New Troops Phase")) {
+//                boardController.setNewTroops(country, this);
+//            }
         }
     }
 

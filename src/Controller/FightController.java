@@ -130,10 +130,10 @@ public class FightController {
             attackingCountry.setSoldiersInside(1);
 
             boardController.getCurrentPlayer().addCards(1);
-            boardView.setPlayerOneCardsButtonText(boardController.getPlayerOne().getName() + " Cards: " + boardController.getPlayerOne().getCards());
-            boardView.setPlayerTwoCardsButtonText(boardController.getPlayerTwo().getName() + " Cards: " + boardController.getPlayerTwo().getCards());
-            boardView.setPlayerThreeCardsButtonText(boardController.getPlayerThree().getName() + " Cards: " + boardController.getPlayerThree().getCards()); //setter for player three cards text
-            boardView.setPlayerFourCardsButtonText(boardController.getPlayerFour().getName() + " Cards: " + boardController.getPlayerFour().getCards()); //setter for player four cards text
+            boardView.setPlayerOneCardsButtonText(boardController.getCurrentPlayer().getName() + " Cards: " + boardController.getCurrentPlayer().getCards());
+            boardView.setPlayerTwoCardsButtonText(boardController.getCurrentPlayer().getName() + " Cards: " + boardController.getCurrentPlayer().getCards());
+            boardView.setPlayerThreeCardsButtonText(boardController.getCurrentPlayer().getName() + " Cards: " + boardController.getCurrentPlayer().getCards()); //setter for player three cards text
+            boardView.setPlayerFourCardsButtonText(boardController.getCurrentPlayer().getName() + " Cards: " + boardController.getCurrentPlayer().getCards()); //setter for player four cards text
         }
 
         // Colors of countries will be set to their owners color
@@ -142,7 +142,7 @@ public class FightController {
 
         boardController.checkWin();
 
-        boardController.checkIfTooManyCards();
+        //boardController.checkIfTooManyCards();
 
         attackingCountry = null;
         defendingCountry = null;

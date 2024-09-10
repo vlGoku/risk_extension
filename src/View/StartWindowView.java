@@ -48,6 +48,10 @@ public class StartWindowView implements ActionListener {
     GridBagConstraints startWindowConstraints = new GridBagConstraints();
     JPanel startWindowPanel = new JPanel(startWindowLayout);
 
+    String choicePicked;
+    Color[] chosenColors;
+
+
     private final StartWindowController controller;
 
     public StartWindowView(StartWindowController controller) {
@@ -205,7 +209,7 @@ public class StartWindowView implements ActionListener {
         choicesToPick.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String choicePicked = Objects.requireNonNull(choicesToPick.getSelectedItem()).toString();
+                choicePicked = Objects.requireNonNull(choicesToPick.getSelectedItem()).toString();
                 if(Objects.equals(choicePicked, "2")){
                     playerThreePanel.setBackground(Color.gray);
                     playerThreeName.setBackground(Color.gray);
@@ -283,10 +287,10 @@ public class StartWindowView implements ActionListener {
     //added color for player three and four
     @Override
     public void actionPerformed(ActionEvent e) {
-        ArrayList<String> playerNames = new ArrayList<>();
         if (e.getActionCommand().equals("playerOneColorButton1")) {
             highlightButton(playerOneColorButton1, playerOneColorButton2, playerOneColorButton3);
             controller.setPlayerOneColor(playerOneColorButton1.getBackground());
+
         }
         if (e.getActionCommand().equals("playerOneColorButton2")) {
             highlightButton(playerOneColorButton2, playerOneColorButton1, playerOneColorButton3);
@@ -362,8 +366,25 @@ public class StartWindowView implements ActionListener {
             !playerThreeName.getText().isBlank() &&
             !playerFourName.getText().isBlank() &&
             !playerOneName.getText().equals(playerTwoName.getText())) {
+            int choiceHowManyPlayers = choicePicked == null ? 4 : Integer.valueOf(choicePicked);
+            String[] playerNames = new String[choiceHowManyPlayers];
+            String[] playerColor = new String[choiceHowManyPlayers];
 
-            controller.startGame(playerNames);
+            if(choiceHowManyPlayers == 2){
+                playerNames[0] = playerOneName.getText();
+                playerNames[1] = playerTwoName.getText();
+            } else if (choiceHowManyPlayers == 3){
+                playerNames[0] = playerOneName.getText();
+                playerNames[1] = playerTwoName.getText();
+                playerNames[2] = playerThreeName.getText();
+            } else if (choiceHowManyPlayers == 4){
+                playerNames[0] = playerOneName.getText();
+                playerNames[1] = playerTwoName.getText();
+                playerNames[2] = playerThreeName.getText();
+                playerNames[3] = playerFourName.getText();
+            }
+
+            controller.startGame(playerNames, playerColor);
         }
 
     }
