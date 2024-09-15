@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Country;
 import Config.Helper;
+import Model.Player;
 import View.BoardView;
 import View.CountryView;
 import View.FightView;
@@ -125,15 +126,22 @@ public class FightController {
     public void updatePanels() {
         // Check if an attack was successful
         if (defendingCountry.getSoldiersInside() == 0) {
+            Player currentPLayer = boardController.getCurrentPlayer();
+            System.out.println("Hello from updatePanels");
             defendingCountry.setOwner(attackingCountry.getOwner());
             defendingCountry.addSoldiersInside(attackingCountry.getSoldiersInside() - 1);
             attackingCountry.setSoldiersInside(1);
 
             boardController.getCurrentPlayer().addCards(1);
-            boardView.setPlayerOneCardsButtonText(boardController.getCurrentPlayer().getName() + " Cards: " + boardController.getCurrentPlayer().getCards());
-            boardView.setPlayerTwoCardsButtonText(boardController.getCurrentPlayer().getName() + " Cards: " + boardController.getCurrentPlayer().getCards());
-            boardView.setPlayerThreeCardsButtonText(boardController.getCurrentPlayer().getName() + " Cards: " + boardController.getCurrentPlayer().getCards()); //setter for player three cards text
-            boardView.setPlayerFourCardsButtonText(boardController.getCurrentPlayer().getName() + " Cards: " + boardController.getCurrentPlayer().getCards()); //setter for player four cards text
+            if(boardController.getCurrentPlayer() == boardController.getPlayerList().getFirst()){
+                boardView.setPlayerOneCardsButtonText(boardController.getCurrentPlayer().getName() + " Cards: " + boardController.getCurrentPlayer().getCards());
+            } else if(boardController.getCurrentPlayer() == boardController.getPlayerList().get(1)){
+                boardView.setPlayerOneCardsButtonText(boardController.getCurrentPlayer().getName() + " Cards: " + boardController.getCurrentPlayer().getCards());
+            } else if(boardController.getCurrentPlayer() == boardController.getPlayerList().get(2)){
+                boardView.setPlayerOneCardsButtonText(boardController.getCurrentPlayer().getName() + " Cards: " + boardController.getCurrentPlayer().getCards());
+            } else if(boardController.getCurrentPlayer() == boardController.getPlayerList().get(3)){
+                boardView.setPlayerOneCardsButtonText(boardController.getCurrentPlayer().getName() + " Cards: " + boardController.getCurrentPlayer().getCards());
+            }
         }
 
         // Colors of countries will be set to their owners color

@@ -37,7 +37,7 @@ public class StartWindowController {
         startWindowFrame = new StartWindowView(this).drawStartWindowFrame();
     }
 
-    public void startGame(String[] playerNames, String[] playerColor) {
+    public void startGame(String[] playerNames, Color[] playerColor) {
         BoardController board = new BoardController(boardChoice, playerNames, playerColor);
         board.createBoardView();
 

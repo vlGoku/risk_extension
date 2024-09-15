@@ -10,7 +10,7 @@ public class Player {
 
     public Player(String name, Color playerColor) {
         this.name = name;
-        this.soldiers = 20;
+        this.soldiers = 8;
         this.cards = 0;
         this.playerColor = playerColor;
     }

@@ -137,11 +137,24 @@ public class CountryView implements MouseListener {
             if(boardController.getPhase().equals("Set Soldiers") && (country.getOwner() == null || country.getOwner() == boardController.getCurrentPlayer())) {
                 boardController.placeSoldiersUniversal(country, this);
             }
-//            else if(boardController.getPhase().equals("Attack Phase")){
-//                boardController.attackPhase(country, this);
-//            }
+            else if(boardController.getPhase().equals("Attack Phase")){
+                boardController.attackPhaseUniversal(country, this);
+            }
+            else if (boardController.getCurrentPlayer().equals(boardController.getPlayerList().getFirst()) && country.getOwner() == boardController.getPlayerList().getFirst()){
+                boardController.playerSetCardTroops(country,this);
+            }
+            else if (boardController.getCurrentPlayer().equals(boardController.getPlayerList().get(1)) && country.getOwner() == boardController.getPlayerList().get(1)){
+                boardController.playerSetCardTroops(country,this);
+            }
+            else if (boardController.getCurrentPlayer().equals(boardController.getPlayerList().get(2)) && country.getOwner() == boardController.getPlayerList().get(2)){
+                boardController.playerSetCardTroops(country,this);
+            }
+            else if (boardController.getCurrentPlayer().equals(boardController.getPlayerList().get(3)) && country.getOwner() == boardController.getPlayerList().get(3)){
+                boardController.playerSetCardTroops(country,this);
+            }
 //            else if (boardController.getPhase().equals(boardController.getPlayerOne().getName() + ": Set Soldiers") && country.getOwner() == boardController.getPlayerOne()) {
-//                boardController.playerOneSetCardTroops(country, this);
+//                //boardController.playerOneSetCardTroops(country, this);
+//                boardController.playerSetCardTroops(country, this);
 //            }
 //            else if (boardController.getPhase().equals(boardController.getPlayerTwo().getName() + ": Set Soldiers") && country.getOwner() == boardController.getPlayerTwo()) {
 //                boardController.playerTwoSetCardTroops(country, this);

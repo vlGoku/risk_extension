@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class StartWindowView implements ActionListener {
@@ -49,7 +50,7 @@ public class StartWindowView implements ActionListener {
     JPanel startWindowPanel = new JPanel(startWindowLayout);
 
     String choicePicked;
-    Color[] chosenColors;
+    Color[] chosenColors = new Color[4];
 
 
     private final StartWindowController controller;
@@ -98,6 +99,7 @@ public class StartWindowView implements ActionListener {
         playerOnePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         JLabel playerOneHeadline = new JLabel("Player One Name: ", JLabel.CENTER);
         playerOneName = new JTextField();
+        playerOneName.setText("1");
         JLabel playerOneColorHeadline = new JLabel("Choose Player One Color: ", JLabel.CENTER);
         JPanel playerOneColorButtonPanel = new JPanel(new GridLayout(1, 3));
         playerOneColorButtonPanel.setBorder(BorderFactory.createEmptyBorder(0,10,2,10));
@@ -116,6 +118,7 @@ public class StartWindowView implements ActionListener {
         playerTwoPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         JLabel playerTwoHeadline = new JLabel("Player Two Name: ", JLabel.CENTER);
         playerTwoName = new JTextField();
+        playerTwoName.setText("2");
         JLabel playerTwoColorHeadline = new JLabel("Choose Player Two Color: ", JLabel.CENTER);
         JPanel playerTwoColorButtonPanel = new JPanel(new GridLayout(1, 3));
         playerTwoColorButtonPanel.setBorder(BorderFactory.createEmptyBorder(0,10,2,10));
@@ -134,6 +137,7 @@ public class StartWindowView implements ActionListener {
         playerThreePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         JLabel playerThreeHeadline = new JLabel("Player Three Name: ", JLabel.CENTER);
         playerThreeName = new JTextField();
+        playerThreeName.setText("3");
         JLabel playerThreeColorHeadline = new JLabel("Choose Player Three Color: ", JLabel.CENTER);
         JPanel playerThreeColorButtonPanel = new JPanel(new GridLayout(1, 3));
         playerThreeColorButtonPanel.setBorder(BorderFactory.createEmptyBorder(0,10,2,10));
@@ -152,6 +156,7 @@ public class StartWindowView implements ActionListener {
         playerFourPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         JLabel playerFourHeadline = new JLabel("Player Four Name: ", JLabel.CENTER);
         playerFourName = new JTextField();
+        playerFourName.setText("4");
         JLabel playerFourColorHeadline = new JLabel("Choose Player Two Color: ", JLabel.CENTER);
         JPanel playerFourColorButtonPanel = new JPanel(new GridLayout(1, 3));
         playerFourColorButtonPanel.setBorder(BorderFactory.createEmptyBorder(0,10,2,10));
@@ -290,51 +295,62 @@ public class StartWindowView implements ActionListener {
         if (e.getActionCommand().equals("playerOneColorButton1")) {
             highlightButton(playerOneColorButton1, playerOneColorButton2, playerOneColorButton3);
             controller.setPlayerOneColor(playerOneColorButton1.getBackground());
-
+            chosenColors[0] = playerOneColorButton1.getBackground();
         }
         if (e.getActionCommand().equals("playerOneColorButton2")) {
             highlightButton(playerOneColorButton2, playerOneColorButton1, playerOneColorButton3);
             controller.setPlayerOneColor(playerOneColorButton2.getBackground());
+            chosenColors[0] = playerOneColorButton2.getBackground();
         }
         if (e.getActionCommand().equals("playerOneColorButton3")) {
             highlightButton(playerOneColorButton3, playerOneColorButton1, playerOneColorButton2);
             controller.setPlayerOneColor(playerOneColorButton3.getBackground());
+            chosenColors[0] = playerOneColorButton3.getBackground();
         }
         if (e.getActionCommand().equals("playerTwoColorButton1")) {
             highlightButton(playerTwoColorButton1, playerTwoColorButton2, playerTwoColorButton3);
             controller.setPlayerTwoColor(playerTwoColorButton1.getBackground());
+            chosenColors[1] = playerTwoColorButton1.getBackground();
         }
         if (e.getActionCommand().equals("playerTwoColorButton2")) {
             highlightButton(playerTwoColorButton2, playerTwoColorButton1, playerTwoColorButton3);
             controller.setPlayerTwoColor(playerTwoColorButton2.getBackground());
+            chosenColors[1] = playerTwoColorButton2.getBackground();
         }
         if (e.getActionCommand().equals("playerTwoColorButton3")) {
             highlightButton(playerTwoColorButton3, playerTwoColorButton1, playerTwoColorButton2);
             controller.setPlayerTwoColor(playerTwoColorButton3.getBackground());
+            chosenColors[1] = playerTwoColorButton3.getBackground();
         }
         if(e.getActionCommand().equals("playerThreeColorButton1")) {
             highlightButton(playerThreeColorButton1, playerThreeColorButton2, playerThreeColorButton3);
             controller.setPlayerThreeColor(playerThreeColorButton1.getBackground());
+            chosenColors[2] = playerThreeColorButton1.getBackground();
         }
         if(e.getActionCommand().equals("playerThreeColorButton2")) {
             highlightButton(playerThreeColorButton2, playerThreeColorButton1, playerThreeColorButton3);
             controller.setPlayerThreeColor(playerThreeColorButton2.getBackground());
+            chosenColors[2] = playerThreeColorButton2.getBackground();
         }
         if(e.getActionCommand().equals("playerThreeColorButton3")) {
             highlightButton(playerThreeColorButton3, playerThreeColorButton1, playerThreeColorButton2);
             controller.setPlayerThreeColor(playerThreeColorButton3.getBackground());
+            chosenColors[2] = playerThreeColorButton3.getBackground();
         }
         if(e.getActionCommand().equals("playerFourColorButton1")) {
             highlightButton(playerFourColorButton1, playerFourColorButton2, playerFourColorButton3);
             controller.setPlayerFourColor(playerFourColorButton1.getBackground());
+            chosenColors[3] = playerFourColorButton1.getBackground();
         }
         if(e.getActionCommand().equals("playerFourColorButton2")) {
             highlightButton(playerFourColorButton2, playerFourColorButton1, playerFourColorButton3);
             controller.setPlayerFourColor(playerFourColorButton2.getBackground());
+            chosenColors[3] = playerFourColorButton2.getBackground();
         }
         if(e.getActionCommand().equals("playerFourColorButton3")) {
             highlightButton(playerFourColorButton3, playerFourColorButton1, playerFourColorButton2);
             controller.setPlayerFourColor(playerFourColorButton3.getBackground());
+            chosenColors[3] = playerFourColorButton3.getBackground();
         }
 
         if (e.getActionCommand().equals("board1")) {
@@ -366,9 +382,8 @@ public class StartWindowView implements ActionListener {
             !playerThreeName.getText().isBlank() &&
             !playerFourName.getText().isBlank() &&
             !playerOneName.getText().equals(playerTwoName.getText())) {
-            int choiceHowManyPlayers = choicePicked == null ? 4 : Integer.valueOf(choicePicked);
+            int choiceHowManyPlayers = choicePicked == null ? 4 : Integer.parseInt(choicePicked);
             String[] playerNames = new String[choiceHowManyPlayers];
-            String[] playerColor = new String[choiceHowManyPlayers];
 
             if(choiceHowManyPlayers == 2){
                 playerNames[0] = playerOneName.getText();
@@ -384,7 +399,8 @@ public class StartWindowView implements ActionListener {
                 playerNames[3] = playerFourName.getText();
             }
 
-            controller.startGame(playerNames, playerColor);
+            controller.startGame(playerNames, chosenColors);
+            System.out.println(Arrays.toString(playerNames));
         }
 
     }

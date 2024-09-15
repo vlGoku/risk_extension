@@ -174,39 +174,39 @@ public class BoardView extends JFrame implements ActionListener {
             boardController.fightController.createFightView();
         }
 
-//        if(boardController.getCurrentPlayer() == boardController.getPlayerOne() &&
-//            e.getActionCommand().equals("playerOneCards") &&
-//            boardController.getPlayerOne().getCards() >= 3 &&
-//            (boardController.getPhase().equals("Attack Phase") || boardController.getPhase().equals("Fortification Phase")))
-//        {
-//            boardController.playerSetCardsPhase(boardController.getCurrentPlayer());
-//        }
-//        if(boardController.getCurrentPlayer() == boardController.getPlayerTwo() &&
-//            e.getActionCommand().equals("playerTwoCards") &&
-//            boardController.getPlayerTwo().getCards() >= 3 &&
-//            (boardController.getPhase().equals("Attack Phase") || boardController.getPhase().equals("Fortification Phase")))
-//        {
-//            boardController.playerTwoSetCardsPhase();
-//        }
-//        //extended for player three
-//        if(boardController.getCurrentPlayer() == boardController.getPlayerThree() &&
-//                e.getActionCommand().equals("playerThreeCards") &&
-//                boardController.getPlayerThree().getCards() >= 3 &&
-//                (boardController.getPhase().equals("Attack Phase") || boardController.getPhase().equals("Fortification Phase")))
-//        {
-//            boardController.playerThreeSetCardsPhase();
-//        }
-//        //extended for player four
-//        if(boardController.getCurrentPlayer() == boardController.getPlayerFour() &&
-//                e.getActionCommand().equals("playerFourCards") &&
-//                boardController.getPlayerFour().getCards() >= 3 &&
-//                (boardController.getPhase().equals("Attack Phase") || boardController.getPhase().equals("Fortification Phase")))
-//        {
-//            boardController.playerFourSetCardsPhase();
-//        }
-//
-//        if(e.getActionCommand().equals("End Phase")) {
-//            boardController.endPhase();
-//        }
+        if(boardController.getCurrentPlayer() == boardController.getPlayerList().getFirst() &&
+            e.getActionCommand().equals("playerOneCards") &&
+            boardController.getCurrentPlayer().getCards() >= 3 &&
+            (boardController.getPhase().equals("Attack Phase") || boardController.getPhase().equals("Fortification Phase")))
+        {
+            boardController.playerSetCardsPhase();
+        }
+        if(boardController.getCurrentPlayer() == boardController.getPlayerList().get(1) &&
+            e.getActionCommand().equals("playerTwoCards") &&
+            boardController.getCurrentPlayer().getCards() >= 3 &&
+            (boardController.getPhase().equals("Attack Phase") || boardController.getPhase().equals("Fortification Phase")))
+        {
+            boardController.playerSetCardsPhase();
+        }
+        //extended for player three
+        if(boardController.getCurrentPlayer() == boardController.getPlayerList().get(2) &&
+                e.getActionCommand().equals("playerThreeCards") &&
+                boardController.getCurrentPlayer().getCards() >= 3 &&
+                (boardController.getPhase().equals("Attack Phase") || boardController.getPhase().equals("Fortification Phase")))
+        {
+            boardController.playerSetCardsPhase();
+        }
+        //extended for player four
+        if(boardController.getCurrentPlayer() == boardController.getPlayerList().get(3) &&
+                e.getActionCommand().equals("playerFourCards") &&
+                boardController.getCurrentPlayer().getCards() >= 3 &&
+                (boardController.getPhase().equals("Attack Phase") || boardController.getPhase().equals("Fortification Phase")))
+        {
+            boardController.playerSetCardsPhase();
+        }
+
+        if(e.getActionCommand().equals("End Phase")) {
+            boardController.endPhase();
+        }
     }
 }
